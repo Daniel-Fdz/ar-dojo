@@ -109,42 +109,42 @@
         <a-marker type="pattern" url="assets/dojo-marker.patt" smooth="true" smoothCount="10" smoothTolerance="0.01"
             smoothThreshold="5">
 
-            <!-- Vídeo centrado -->
-            <a-video id="video-plane" src="#judoVid" width="1.8" height="1" position="0 0 0.5" rotation="-90 0 0">
+            <!-- Vídeo centrado más arriba -->
+            <a-video id="video-plane" src="#judoVid" width="1.5" height="0.85" position="0 0.8 0.5" rotation="-90 0 0">
             </a-video>
 
             <!-- Texto de pregunta arriba de todo -->
-            <a-text value="Cual es la tecnica mostrada?" align="center" position="0 0 1.5" width="4" color="#FFFF00"
+            <a-text value="Cual es la tecnica mostrada?" align="center" position="0 0.8 1.5" width="4" color="#FFFF00"
                 rotation="-90 0 0" shader="msdf">
             </a-text>
 
             <!-- Botones más pequeños y arriba del video -->
-            <a-plane id="opt1" class="answer" position="-1 0 0.9" width="0.8" height="0.4" rotation="-90 0 0"
+            <a-plane id="opt1" class="answer" position="-0.8 0.8 0.9" width="0.6" height="0.3" rotation="-90 0 0"
                 material="color: #42A5F5; transparent: true; opacity: 0.9"
                 animation__mouseenter="property: scale; to: 1.1 1.1 1.1; startEvents: mouseenter; dur: 200"
                 animation__mouseleave="property: scale; to: 1 1 1; startEvents: mouseleave; dur: 200">
-                <a-text value="Ippon Seoi Nage" align="center" position="0 0 0.01" width="4" color="#FFFFFF">
+                <a-text value="Ippon Seoi Nage" align="center" position="0 0 0.05" width="4" color="#FFFFFF">
                 </a-text>
             </a-plane>
 
-            <a-plane id="opt2" class="answer" position="0 0 0.9" width="0.8" height="0.4" rotation="-90 0 0"
+            <a-plane id="opt2" class="answer" position="0 0.8 0.9" width="0.6" height="0.3" rotation="-90 0 0"
                 material="color: #42A5F5; transparent: true; opacity: 0.9"
                 animation__mouseenter="property: scale; to: 1.1 1.1 1.1; startEvents: mouseenter; dur: 200"
                 animation__mouseleave="property: scale; to: 1 1 1; startEvents: mouseleave; dur: 200">
-                <a-text value="O Goshi" align="center" position="0 0 0.01" width="5" color="#FFFFFF">
+                <a-text value="O Goshi" align="center" position="0 0 0.05" width="5" color="#FFFFFF">
                 </a-text>
             </a-plane>
 
-            <a-plane id="opt3" class="answer" position="1 0 0.9" width="0.8" height="0.4" rotation="-90 0 0"
+            <a-plane id="opt3" class="answer" position="0.8 0.8 0.9" width="0.6" height="0.3" rotation="-90 0 0"
                 material="color: #42A5F5; transparent: true; opacity: 0.9"
                 animation__mouseenter="property: scale; to: 1.1 1.1 1.1; startEvents: mouseenter; dur: 200"
                 animation__mouseleave="property: scale; to: 1 1 1; startEvents: mouseleave; dur: 200">
-                <a-text value="Uchi Mata" align="center" position="0 0 0.01" width="4" color="#FFFFFF">
+                <a-text value="Uchi Mata" align="center" position="0 0 0.05" width="4" color="#FFFFFF">
                 </a-text>
             </a-plane>
 
             <!-- Cruz roja centrada -->
-            <a-entity id="cross" position="0 0 1.2" rotation="-90 0 0" visible="false">
+            <a-entity id="cross" position="0 0.8 1.2" rotation="-90 0 0" visible="false">
                 <a-box width="0.15" height="0.6" depth="0.05" material="color: #FF4444" position="0 0 0">
                 </a-box>
                 <a-box width="0.6" height="0.15" depth="0.05" material="color: #FF4444" position="0 0 0">
@@ -154,7 +154,7 @@
             </a-entity>
 
             <!-- Confeti centrado -->
-            <a-entity id="confetti" simple-confetti="enabled: false" position="0 0 1" visible="false">
+            <a-entity id="confetti" simple-confetti="enabled: false" position="0 0.8 1" visible="false">
             </a-entity>
 
         </a-marker>
