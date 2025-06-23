@@ -109,52 +109,52 @@
         <a-marker type="pattern" url="assets/dojo-marker.patt" smooth="true" smoothCount="10" smoothTolerance="0.01"
             smoothThreshold="5">
 
-            <!-- Vídeo más pequeño y mejor posicionado -->
-            <a-video id="video-plane" src="#judoVid" width="1.5" height="0.85" position="0 0.8 0" rotation="-90 0 0">
+            <!-- Vídeo más adelante y visible -->
+            <a-video id="video-plane" src="#judoVid" width="3" height="1.7" position="0 1.5 0.5" rotation="-90 0 0">
             </a-video>
 
-            <!-- Texto de pregunta más visible -->
-            <a-text value="¿Cuál es la técnica mostrada?" align="center" position="0 1.8 0" width="4" color="#FFFF00"
+            <!-- Texto de pregunta más cerca -->
+            <a-text value="¿Cuál es la técnica mostrada?" align="center" position="0 3 0.5" width="6" color="#FFFF00"
                 shader="msdf">
             </a-text>
 
-            <!-- Botones más grandes y mejor posicionados -->
-            <a-plane id="opt1" class="answer" position="-1.2 0.2 0" width="1" height="0.5"
+            <!-- Botones más grandes y adelantados -->
+            <a-plane id="opt1" class="answer" position="-2 0.5 0.5" width="1.8" height="0.8"
                 material="color: #42A5F5; transparent: true; opacity: 0.9"
                 animation__mouseenter="property: scale; to: 1.1 1.1 1.1; startEvents: mouseenter; dur: 200"
                 animation__mouseleave="property: scale; to: 1 1 1; startEvents: mouseleave; dur: 200">
-                <a-text value="Ippon Seoi Nage" align="center" position="0 0 0.01" width="3" color="#FFFFFF">
+                <a-text value="Ippon Seoi Nage" align="center" position="0 0 0.01" width="4" color="#FFFFFF">
                 </a-text>
             </a-plane>
 
-            <a-plane id="opt2" class="answer" position="0 0.2 0" width="1" height="0.5"
+            <a-plane id="opt2" class="answer" position="0 0.5 0.5" width="1.8" height="0.8"
                 material="color: #42A5F5; transparent: true; opacity: 0.9"
                 animation__mouseenter="property: scale; to: 1.1 1.1 1.1; startEvents: mouseenter; dur: 200"
                 animation__mouseleave="property: scale; to: 1 1 1; startEvents: mouseleave; dur: 200">
-                <a-text value="O Goshi" align="center" position="0 0 0.01" width="4" color="#FFFFFF">
+                <a-text value="O Goshi" align="center" position="0 0 0.01" width="5" color="#FFFFFF">
                 </a-text>
             </a-plane>
 
-            <a-plane id="opt3" class="answer" position="1.2 0.2 0" width="1" height="0.5"
+            <a-plane id="opt3" class="answer" position="2 0.5 0.5" width="1.8" height="0.8"
                 material="color: #42A5F5; transparent: true; opacity: 0.9"
                 animation__mouseenter="property: scale; to: 1.1 1.1 1.1; startEvents: mouseenter; dur: 200"
                 animation__mouseleave="property: scale; to: 1 1 1; startEvents: mouseleave; dur: 200">
-                <a-text value="Uchi Mata" align="center" position="0 0 0.01" width="3" color="#FFFFFF">
+                <a-text value="Uchi Mata" align="center" position="0 0 0.01" width="4" color="#FFFFFF">
                 </a-text>
             </a-plane>
 
-            <!-- Cruz roja más visible -->
-            <a-entity id="cross" position="0 1.5 0" visible="false">
-                <a-box width="0.15" height="0.8" depth="0.08" material="color: #FF4444" position="0 0 0">
+            <!-- Cruz roja más visible y adelantada -->
+            <a-entity id="cross" position="0 2.5 0.5" visible="false">
+                <a-box width="0.3" height="1.2" depth="0.1" material="color: #FF4444" position="0 0 0">
                 </a-box>
-                <a-box width="0.8" height="0.15" depth="0.08" material="color: #FF4444" position="0 0 0">
+                <a-box width="1.2" height="0.3" depth="0.1" material="color: #FF4444" position="0 0 0">
                 </a-box>
-                <a-circle radius="0.5" material="color: #FFFFFF; transparent: true; opacity: 0.9" position="0 0 -0.1">
+                <a-circle radius="0.8" material="color: #FFFFFF; transparent: true; opacity: 0.9" position="0 0 -0.1">
                 </a-circle>
             </a-entity>
 
-            <!-- Confeti mejorado -->
-            <a-entity id="confetti" simple-confetti="enabled: false" position="0 1.2 0" visible="false">
+            <!-- Confeti más visible -->
+            <a-entity id="confetti" simple-confetti="enabled: false" position="0 2 0.5" visible="false">
             </a-entity>
 
         </a-marker>
