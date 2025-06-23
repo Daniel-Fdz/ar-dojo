@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="utf-8">
+    <title>Quiz Judo AR</title>
+    <script src="https://aframe.io/releases/1.4.0/aframe.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/gh/AR-js-org/AR.js/aframe/build/aframe-ar.min.js"></script>
+    <!-- Sistema de confeti alternativo más simple -->
+    <script>
+        AFRAME.registerComponent('simple-confetti', {
+            schema: {
+                enabled: { type: 'boolean', default: false }
+            },
+            init: function () {
+                this.particles = [];
+                this.createParticles();
+            },
+            createParticles: function () {
+                for (let i = 0; i < 50; i++) {
+                    const particle = document.createElement('a-box');
+                    particle.setAttribute('width', '0.02');
+                    particle.setAttribute('height', '0.02');
+                    particle.setAttribute('depth', '0.02');
+                    particle.setAttribute('material', {
+                        color: `hsl(${Math.random() * 360}, 70%, 60%)`
+                    });
+                    particle.setAttribute('position', {
+                        x: (Math.random() - 0.5) * 2,
+                        y: Math.random() * 2 + 1,
+                        z: (Math.random() - 0.5) * 2
+                    });
+                    particle.setAttribute('animation', {
+                        property: 'position',
+                        to: {
+                            x: (Math.random() - 0.5) * 4,
+                            y: -1,
+                            z: (Math.random() - 0.5) * 4
+                        },
+                        dur: 3000,
+                        easing: 'easeOutQuad'
+                    });
+                    particle.setAttribute('animation__rotation', {
+                        property: 'rotation',
+                        to: {
+                            x: Math.random() * 360,
+                            y: Math.random() * 360,
+                            z: Math.random() * 360
+                        },
+                        dur: 3000,
+                        loop: true
+                    });
+                    this.el.appendChild(particle);
+                    this.particles.push(particle);
+                }
+            },
+            update: function () {
+                this.el.setAttribute('visible', this.data.enabled);
+                if (this.data.enabled) {
+                    // Reiniciar animaciones
+                    this.particles.forEach(particle => {
+                        particle.removeAttribute('animation');
+                        particle.removeAttribute('animation__rotation');
+                        setTimeout(() => {
+                            particle.setAttribute('animation', {
+                                property: 'position',
+                                to: {
+                                    x: (Math.random() - 0.5) * 4,
+                                    y: -1,
+                                    z: (Math.random() - 0.5) * 4
+                                },
+                                dur: 3000,
+                                easing: 'easeOutQuad'
+                            });
+                            particle.setAttribute('animation__rotation', {
+                                property: 'rotation',
+                                to: {
+                                    x: Math.random() * 360,
+                                    y: Math.random() * 360,
+                                    z: Math.random() * 360
+                                },
+                                dur: 3000,
+                                loop: true
+                            });
+                        }, 100);
+                    });
+                }
+            }
+        });
+    </script>
+
+    <script src="main.js"></script>
+</head>
+
+<body style="margin: 0; overflow: hidden;">
+    <a-scene embedded arjs="trackingMethod: best; sourceType: webcam;">
+        <a-assets>
+            <video id="judoVid" src="assets/judo-video.wmv" preload="auto" loop="false" crossorigin="anonymous"></video>
+        </a-assets>
+
+        <!-- Marcador personalizado -->
+        <a-marker type="pattern" url="assets/dojo-marker.patt">
+
+            <!-- Vídeo plano delante de la pared -->
+            <a-video id="video-plane" src="#judoVid" width="2" height="1.125" position="0 1 0" rotation="-90 0 0">
+            </a-video>
+
+            <!-- Botones de respuestas bajo el vídeo -->
+            <a-plane id="opt1" class="answer" position="-0.8 0.4 0" width="0.7" height="0.4" material="color: #42A5F5">
+                <a-text value="Opción A" align="center" position="0 0 0.01" width="1.5"></a-text>
+            </a-plane>
+            <a-plane id="opt2" class="answer" position="0 0.4 0" width="0.7" height="0.4" material="color: #42A5F5">
+                <a-text value="Opción B" align="center" position="0 0 0.01" width="1.5"></a-text>
+            </a-plane>
+            <a-plane id="opt3" class="answer" position="0.8 0.4 0" width="0.7" height="0.4" material="color: #42A5F5">
+                <a-text value="Opción C" align="center" position="0 0 0.01" width="1.5"></a-text>
+            </a-plane>
+
+            <!-- Cruz roja (error) - Creada con geometrías básicas -->
+            <a-entity id="cross" position="0 1.2 0" visible="false">
+                <!-- Línea vertical de la cruz -->
+                <a-box width="0.1" height="0.6" depth="0.05" material="color: #FF4444" position="0 0 0">
+                </a-box>
+                <!-- Línea horizontal de la cruz -->
+                <a-box width="0.6" height="0.1" depth="0.05" material="color: #FF4444" position="0 0 0">
+                </a-box>
+                <!-- Círculo de fondo -->
+                <a-circle radius="0.4" material="color: #FFDDDD; transparent: true; opacity: 0.8" position="0 0 -0.1">
+                </a-circle>
+            </a-entity>
+
+            <!-- Confeti (éxito) - Sistema simple -->
+            <a-entity id="confetti" simple-confetti="enabled: false" position="0 1 0" visible="false">
+            </a-entity>
+
+        </a-marker>
+
+        <a-entity camera look-controls></a-entity>
+        <a-entity cursor="fuse: false; rayOrigin: mouse"></a-entity>
+    </a-scene>
+</body>
+
+</html>
