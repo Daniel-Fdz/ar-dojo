@@ -24,7 +24,7 @@
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
             transition: all 0.2s ease;
             cursor: pointer;
-            width: 18%;
+            width: 25%;
             height: 8%;
             top: 65%;
         }
@@ -39,15 +39,15 @@
         }
 
         #html-opt1 {
-            left: 26%;
+            left: 12.5%;
         }
 
         #html-opt2 {
-            left: 46%;
+            left: 37.5%;
         }
 
         #html-opt3 {
-            left: 66%;
+            left: 62.5%;
         }
 
         /* Animación de aparición */
@@ -67,19 +67,22 @@
             animation: fadeInUp 0.5s ease-out;
         }
 
-        /* Feedback visual */
+        /* Feedback visual - PERFECTAMENTE CENTRADO */
         #html-feedback {
-            position: absolute;
+            position: fixed;
             left: 50%;
             top: 50%;
             transform: translate(-50%, -50%);
             font-family: Arial, sans-serif;
-            font-size: 24px;
+            font-size: 28px;
             font-weight: bold;
-            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
+            text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.8);
             pointer-events: none;
             display: none;
             animation: pulse 0.8s ease-in-out infinite alternate;
+            z-index: 2000;
+            text-align: center;
+            white-space: nowrap;
         }
 
         @keyframes pulse {
