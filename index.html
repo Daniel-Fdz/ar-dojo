@@ -93,50 +93,80 @@
 </head>
 
 <body style="margin: 0; overflow: hidden;">
-    <a-scene embedded arjs="trackingMethod: best; sourceType: webcam;">
+    <!-- Configuración mejorada para móvil -->
+    <a-scene embedded
+        arjs="trackingMethod: best; sourceType: webcam; debugUIEnabled: false; detectionMode: mono_and_matrix; matrixCodeType: 3x3;"
+        vr-mode-ui="enabled: false" device-orientation-permission-ui="enabled: false">
+
         <a-assets>
-            <video id="judoVid" src="https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4" preload="auto" loop="false" crossorigin="anonymous"></video>
+            <!-- Video de prueba compatible con móviles -->
+            <video id="judoVid" src="https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4"
+                preload="auto" loop="false" crossorigin="anonymous" playsinline muted>
+            </video>
         </a-assets>
 
-        <!-- Marcador personalizado -->
-        <a-marker type="pattern" url="assets/dojo-marker.patt">
+        <!-- Marcador personalizado con tracking mejorado -->
+        <a-marker type="pattern" url="assets/dojo-marker.patt" smooth="true" smoothCount="10" smoothTolerance="0.01"
+            smoothThreshold="5">
 
-            <!-- Vídeo plano delante de la pared -->
-            <a-video id="video-plane" src="#judoVid" width="2" height="1.125" position="0 1 0" rotation="-90 0 0">
+            <!-- Vídeo más pequeño y mejor posicionado -->
+            <a-video id="video-plane" src="#judoVid" width="1.5" height="0.85" position="0 0.8 0" rotation="-90 0 0">
             </a-video>
 
-            <!-- Botones de respuestas bajo el vídeo -->
-            <a-plane id="opt1" class="answer" position="-0.8 0.4 0" width="0.7" height="0.4" material="color: #42A5F5">
-                <a-text value="Opción A" align="center" position="0 0 0.01" width="1.5"></a-text>
-            </a-plane>
-            <a-plane id="opt2" class="answer" position="0 0.4 0" width="0.7" height="0.4" material="color: #42A5F5">
-                <a-text value="Opción B" align="center" position="0 0 0.01" width="1.5"></a-text>
-            </a-plane>
-            <a-plane id="opt3" class="answer" position="0.8 0.4 0" width="0.7" height="0.4" material="color: #42A5F5">
-                <a-text value="Opción C" align="center" position="0 0 0.01" width="1.5"></a-text>
+            <!-- Texto de pregunta más visible -->
+            <a-text value="¿Cuál es la técnica mostrada?" align="center" position="0 1.8 0" width="4" color="#FFFF00"
+                shader="msdf">
+            </a-text>
+
+            <!-- Botones más grandes y mejor posicionados -->
+            <a-plane id="opt1" class="answer" position="-1.2 0.2 0" width="1" height="0.5"
+                material="color: #42A5F5; transparent: true; opacity: 0.9"
+                animation__mouseenter="property: scale; to: 1.1 1.1 1.1; startEvents: mouseenter; dur: 200"
+                animation__mouseleave="property: scale; to: 1 1 1; startEvents: mouseleave; dur: 200">
+                <a-text value="Ippon Seoi Nage" align="center" position="0 0 0.01" width="3" color="#FFFFFF">
+                </a-text>
             </a-plane>
 
-            <!-- Cruz roja (error) - Creada con geometrías básicas -->
-            <a-entity id="cross" position="0 1.2 0" visible="false">
-                <!-- Línea vertical de la cruz -->
-                <a-box width="0.1" height="0.6" depth="0.05" material="color: #FF4444" position="0 0 0">
+            <a-plane id="opt2" class="answer" position="0 0.2 0" width="1" height="0.5"
+                material="color: #42A5F5; transparent: true; opacity: 0.9"
+                animation__mouseenter="property: scale; to: 1.1 1.1 1.1; startEvents: mouseenter; dur: 200"
+                animation__mouseleave="property: scale; to: 1 1 1; startEvents: mouseleave; dur: 200">
+                <a-text value="O Goshi" align="center" position="0 0 0.01" width="4" color="#FFFFFF">
+                </a-text>
+            </a-plane>
+
+            <a-plane id="opt3" class="answer" position="1.2 0.2 0" width="1" height="0.5"
+                material="color: #42A5F5; transparent: true; opacity: 0.9"
+                animation__mouseenter="property: scale; to: 1.1 1.1 1.1; startEvents: mouseenter; dur: 200"
+                animation__mouseleave="property: scale; to: 1 1 1; startEvents: mouseleave; dur: 200">
+                <a-text value="Uchi Mata" align="center" position="0 0 0.01" width="3" color="#FFFFFF">
+                </a-text>
+            </a-plane>
+
+            <!-- Cruz roja más visible -->
+            <a-entity id="cross" position="0 1.5 0" visible="false">
+                <a-box width="0.15" height="0.8" depth="0.08" material="color: #FF4444" position="0 0 0">
                 </a-box>
-                <!-- Línea horizontal de la cruz -->
-                <a-box width="0.6" height="0.1" depth="0.05" material="color: #FF4444" position="0 0 0">
+                <a-box width="0.8" height="0.15" depth="0.08" material="color: #FF4444" position="0 0 0">
                 </a-box>
-                <!-- Círculo de fondo -->
-                <a-circle radius="0.4" material="color: #FFDDDD; transparent: true; opacity: 0.8" position="0 0 -0.1">
+                <a-circle radius="0.5" material="color: #FFFFFF; transparent: true; opacity: 0.9" position="0 0 -0.1">
                 </a-circle>
             </a-entity>
 
-            <!-- Confeti (éxito) - Sistema simple -->
-            <a-entity id="confetti" simple-confetti="enabled: false" position="0 1 0" visible="false">
+            <!-- Confeti mejorado -->
+            <a-entity id="confetti" simple-confetti="enabled: false" position="0 1.2 0" visible="false">
             </a-entity>
 
         </a-marker>
 
-        <a-entity camera look-controls></a-entity>
-        <a-entity cursor="fuse: false; rayOrigin: mouse"></a-entity>
+        <!-- Cámara sin controles que interfieran -->
+        <a-entity camera></a-entity>
+
+        <!-- Cursor optimizado para móvil -->
+        <a-entity id="mouseCursor" cursor="rayOrigin: mouse; fuse: false"
+            raycaster="objects: .answer; recursive: false">
+        </a-entity>
+
     </a-scene>
 </body>
 
