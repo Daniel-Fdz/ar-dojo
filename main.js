@@ -2,6 +2,8 @@
 const correctAnswer = "opt2";
 
 window.addEventListener('load', () => {
+  console.log('Página cargada, iniciando configuración...');
+
   // Referencias
   const videoEl = document.querySelector('#judoVid');
   const opts = document.querySelectorAll('.answer');
@@ -14,15 +16,18 @@ window.addEventListener('load', () => {
   const htmlOpt2 = document.querySelector('#html-opt2');
   const htmlOpt3 = document.querySelector('#html-opt3');
 
-  console.log('Botones encontrados:', opts.length);
+  console.log('Elementos encontrados:');
+  console.log('- Botones A-Frame:', opts.length);
+  console.log('- Botón HTML 1:', htmlOpt1 ? 'Sí' : 'No');
+  console.log('- Botón HTML 2:', htmlOpt2 ? 'Sí' : 'No');
+  console.log('- Botón HTML 3:', htmlOpt3 ? 'Sí' : 'No');
 
   // Función para manejar respuesta
   function handleAnswer(selected) {
-    console.log('Procesando respuesta:', selected);
+    console.log('🎯 PROCESANDO RESPUESTA:', selected);
     
     if (selected === correctAnswer) {
-      // RESPUESTA CORRECTA
-      console.log('Respuesta correcta!');
+      console.log('✅ RESPUESTA CORRECTA!');
       
       correctText.setAttribute('visible', true);
       successBackground.setAttribute('visible', true);
@@ -34,33 +39,92 @@ window.addEventListener('load', () => {
       });
       
       const correctBtn = document.querySelector(`#${selected}`);
-      correctBtn.setAttribute('material', 'color: #00FF00; transparent: true; opacity: 0.9');
+      if (correctBtn) {
+        correctBtn.setAttribute('material', 'color: #00FF00; transparent: true; opacity: 0.9');
+      }
       
       setTimeout(() => {
         correctText.setAttribute('visible', false);
         successBackground.setAttribute('visible', false);
         successBackground.removeAttribute('animation');
         successBackground.setAttribute('scale', '1 1 1');
-        correctBtn.setAttribute('material', 'color: #42A5F5; transparent: true; opacity: 0.9');
+        if (correctBtn) {
+          correctBtn.setAttribute('material', 'color: #42A5F5; transparent: true; opacity: 0.9');
+        }
       }, 4000);
       
     } else {
-      // RESPUESTA INCORRECTA
-      console.log('Respuesta incorrecta!');
+      console.log('❌ RESPUESTA INCORRECTA!');
       
       incorrectText.setAttribute('visible', true);
       const incorrectBtn = document.querySelector(`#${selected}`);
-      incorrectBtn.setAttribute('material', 'color: #FF4444; transparent: true; opacity: 0.9');
+      if (incorrectBtn) {
+        incorrectBtn.setAttribute('material', 'color: #FF4444; transparent: true; opacity: 0.9');
+      }
       
       setTimeout(() => {
         incorrectText.setAttribute('visible', false);
-        incorrectBtn.setAttribute('material', 'color: #42A5F5; transparent: true; opacity: 0.9');
+        if (incorrectBtn) {
+          incorrectBtn.setAttribute('material', 'color: #42A5F5; transparent: true; opacity: 0.9');
+        }
       }, 3000);
     }
   }
 
+  // Configurar eventos en botones HTML (método principal)
+  if (htmlOpt1) {
+    console.log('Configurando eventos para botón HTML 1');
+    htmlOpt1.addEventListener('click', (e) => {
+      console.log('🖱️ HTML Button 1 CLICK');
+      e.preventDefault();
+      handleAnswer('opt1');
+    });
+    htmlOpt1.addEventListener('touchstart', (e) => {
+      console.log('👆 HTML Button 1 TOUCH');
+      e.preventDefault();
+      handleAnswer('opt1');
+    });
+  }
+  
+  if (htmlOpt2) {
+    console.log('Configurando eventos para botón HTML 2');
+    htmlOpt2.addEventListener('click', (e) => {
+      console.log('🖱️ HTML Button 2 CLICK');
+      e.preventDefault();
+      handleAnswer('opt2');
+    });
+    htmlOpt2.addEventListener('touchstart', (e) => {
+      console.log('👆 HTML Button 2 TOUCH');
+      e.preventDefault();
+      handleAnswer('opt2');
+    });
+  }
+  
+  if (htmlOpt3) {
+    console.log('Configurando eventos para botón HTML 3');
+    htmlOpt3.addEventListener('click', (e) => {
+      console.log('🖱️ HTML Button 3 CLICK');
+      e.preventDefault();
+      handleAnswer('opt3');
+    });
+    htmlOpt3.addEventListener('touchstart', (e) => {
+      console.log('👆 HTML Button 3 TOUCH');
+      e.preventDefault();
+      handleAnswer('opt3');
+    });
+  }
+
+  // Test de los botones HTML
+  console.log('🧪 Testeando accesibilidad de botones HTML...');
+  setTimeout(() => {
+    if (htmlOpt1) htmlOpt1.style.border = '3px solid yellow';
+    if (htmlOpt2) htmlOpt2.style.border = '3px solid yellow';
+    if (htmlOpt3) htmlOpt3.style.border = '3px solid yellow';
+  }, 2000);
+
   // Reproducir vídeo al detectar marcador
   document.querySelector('a-marker').addEventListener('markerFound', () => {
+    console.log('🎯 Marcador detectado!');
     videoEl.play();
     correctText.setAttribute('visible', false);
     incorrectText.setAttribute('visible', false);
@@ -72,60 +136,5 @@ window.addEventListener('load', () => {
     });
   });
 
-  // Configurar eventos en botones HTML superpuestos (GARANTIZA FUNCIONAMIENTO)
-  htmlOpt1.addEventListener('click', () => {
-    console.log('HTML Button 1 clicked');
-    handleAnswer('opt1');
-  });
-  
-  htmlOpt2.addEventListener('click', () => {
-    console.log('HTML Button 2 clicked');
-    handleAnswer('opt2');
-  });
-  
-  htmlOpt3.addEventListener('click', () => {
-    console.log('HTML Button 3 clicked');
-    handleAnswer('opt3');
-  });
-
-  // Eventos táctiles en botones HTML
-  htmlOpt1.addEventListener('touchend', () => {
-    console.log('HTML Button 1 touched');
-    handleAnswer('opt1');
-  });
-  
-  htmlOpt2.addEventListener('touchend', () => {
-    console.log('HTML Button 2 touched');
-    handleAnswer('opt2');
-  });
-  
-  htmlOpt3.addEventListener('touchend', () => {
-    console.log('HTML Button 3 touched');
-    handleAnswer('opt3');
-  });
-
-  // Configurar eventos directos en cada botón A-Frame (como respaldo)
-  opts.forEach((opt, index) => {
-    console.log(`Configurando botón A-Frame ${index + 1}:`, opt.getAttribute('id'));
-    
-    opt.addEventListener('touchend', (e) => {
-      console.log('A-Frame touch end en:', opt.getAttribute('id'));
-      handleAnswer(opt.getAttribute('id'));
-    });
-    
-    opt.addEventListener('mouseup', (e) => {
-      console.log('A-Frame mouse up en:', opt.getAttribute('id'));
-      handleAnswer(opt.getAttribute('id'));
-    });
-  });
-
-  // Esperar a que A-Frame esté completamente cargado
-  document.querySelector('a-scene').addEventListener('loaded', () => {
-    console.log('A-Frame cargado completamente');
-    
-    opts.forEach(opt => {
-      opt.setAttribute('clickable', '');
-      opt.flushToDOM();
-    });
-  });
+  console.log('✅ Configuración completada');
 });
