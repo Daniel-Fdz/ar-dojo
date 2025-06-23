@@ -8,8 +8,13 @@ window.addEventListener('load', () => {
   const correctText = document.querySelector('#correct-text');
   const incorrectText = document.querySelector('#incorrect-text');
   const successBackground = document.querySelector('#success-background');
+  
+  // Referencias a botones HTML superpuestos
+  const htmlOpt1 = document.querySelector('#html-opt1');
+  const htmlOpt2 = document.querySelector('#html-opt2');
+  const htmlOpt3 = document.querySelector('#html-opt3');
 
-  console.log('Botones encontrados:', opts.length); // Debug
+  console.log('Botones encontrados:', opts.length);
 
   // Función para manejar respuesta
   function handleAnswer(selected) {
@@ -19,10 +24,7 @@ window.addEventListener('load', () => {
       // RESPUESTA CORRECTA
       console.log('Respuesta correcta!');
       
-      // Mostrar texto "CORRECTO" 
       correctText.setAttribute('visible', true);
-      
-      // Mostrar fondo que crece una vez
       successBackground.setAttribute('visible', true);
       successBackground.setAttribute('animation', {
         property: 'scale',
@@ -31,11 +33,9 @@ window.addEventListener('load', () => {
         easing: 'easeOutQuart'
       });
       
-      // Cambiar color del botón correcto a verde
       const correctBtn = document.querySelector(`#${selected}`);
       correctBtn.setAttribute('material', 'color: #00FF00; transparent: true; opacity: 0.9');
       
-      // Ocultar efectos después de 4 segundos
       setTimeout(() => {
         correctText.setAttribute('visible', false);
         successBackground.setAttribute('visible', false);
@@ -48,14 +48,10 @@ window.addEventListener('load', () => {
       // RESPUESTA INCORRECTA
       console.log('Respuesta incorrecta!');
       
-      // Mostrar texto "INCORRECTO"
       incorrectText.setAttribute('visible', true);
-      
-      // Cambiar color del botón incorrecto a rojo
       const incorrectBtn = document.querySelector(`#${selected}`);
       incorrectBtn.setAttribute('material', 'color: #FF4444; transparent: true; opacity: 0.9');
       
-      // Ocultar efectos después de 3 segundos
       setTimeout(() => {
         incorrectText.setAttribute('visible', false);
         incorrectBtn.setAttribute('material', 'color: #42A5F5; transparent: true; opacity: 0.9');
@@ -66,77 +62,70 @@ window.addEventListener('load', () => {
   // Reproducir vídeo al detectar marcador
   document.querySelector('a-marker').addEventListener('markerFound', () => {
     videoEl.play();
-    // Reset estados
     correctText.setAttribute('visible', false);
     incorrectText.setAttribute('visible', false);
     successBackground.setAttribute('visible', false);
     successBackground.removeAttribute('animation');
     
-    // Resetear colores de todos los botones
     opts.forEach(option => {
       option.setAttribute('material', 'color: #42A5F5; transparent: true; opacity: 0.9');
     });
   });
 
-  // Configurar eventos táctiles para cada botón
+  // Configurar eventos en botones HTML superpuestos (GARANTIZA FUNCIONAMIENTO)
+  htmlOpt1.addEventListener('click', () => {
+    console.log('HTML Button 1 clicked');
+    handleAnswer('opt1');
+  });
+  
+  htmlOpt2.addEventListener('click', () => {
+    console.log('HTML Button 2 clicked');
+    handleAnswer('opt2');
+  });
+  
+  htmlOpt3.addEventListener('click', () => {
+    console.log('HTML Button 3 clicked');
+    handleAnswer('opt3');
+  });
+
+  // Eventos táctiles en botones HTML
+  htmlOpt1.addEventListener('touchend', () => {
+    console.log('HTML Button 1 touched');
+    handleAnswer('opt1');
+  });
+  
+  htmlOpt2.addEventListener('touchend', () => {
+    console.log('HTML Button 2 touched');
+    handleAnswer('opt2');
+  });
+  
+  htmlOpt3.addEventListener('touchend', () => {
+    console.log('HTML Button 3 touched');
+    handleAnswer('opt3');
+  });
+
+  // Configurar eventos directos en cada botón A-Frame (como respaldo)
   opts.forEach((opt, index) => {
-    console.log(`Configurando botón ${index + 1}:`, opt.getAttribute('id'));
+    console.log(`Configurando botón A-Frame ${index + 1}:`, opt.getAttribute('id'));
     
-    // Eventos táctiles nativos (más confiables en móvil)
-    opt.addEventListener('touchstart', (e) => {
-      e.preventDefault();
-      e.stopPropagation();
-      console.log('Touch detectado en:', opt.getAttribute('id'));
-      handleAnswer(opt.getAttribute('id'));
-    }, { passive: false });
-    
-    // Eventos de mouse para escritorio
-    opt.addEventListener('mousedown', (e) => {
-      e.preventDefault();
-      e.stopPropagation();
-      console.log('Click detectado en:', opt.getAttribute('id'));
+    opt.addEventListener('touchend', (e) => {
+      console.log('A-Frame touch end en:', opt.getAttribute('id'));
       handleAnswer(opt.getAttribute('id'));
     });
     
-    // Evento de cursor A-Frame como respaldo
-    opt.addEventListener('click', (e) => {
-      e.preventDefault();
-      e.stopPropagation();
-      console.log('Cursor A-Frame en:', opt.getAttribute('id'));
+    opt.addEventListener('mouseup', (e) => {
+      console.log('A-Frame mouse up en:', opt.getAttribute('id'));
       handleAnswer(opt.getAttribute('id'));
     });
   });
 
-  // Agregar evento táctil a toda la escena como respaldo adicional
-  const scene = document.querySelector('a-scene');
-  scene.addEventListener('touchstart', (e) => {
-    console.log('Touch en escena detectado');
+  // Esperar a que A-Frame esté completamente cargado
+  document.querySelector('a-scene').addEventListener('loaded', () => {
+    console.log('A-Frame cargado completamente');
     
-    // Obtener coordenadas del toque
-    const touch = e.touches[0];
-    const x = touch.clientX;
-    const y = touch.clientY;
-    
-    // Usar raycasting para detectar el elemento tocado
-    const camera = document.querySelector('[camera]');
-    const raycaster = new THREE.Raycaster();
-    const mouse = new THREE.Vector2();
-    
-    mouse.x = (x / window.innerWidth) * 2 - 1;
-    mouse.y = -(y / window.innerHeight) * 2 + 1;
-    
-    raycaster.setFromCamera(mouse, camera.getObject3D('camera'));
-    
-    // Verificar intersecciones con botones
     opts.forEach(opt => {
-      const object3D = opt.getObject3D('mesh');
-      if (object3D) {
-        const intersects = raycaster.intersectObject(object3D, true);
-        if (intersects.length > 0) {
-          console.log('Raycasting detectó:', opt.getAttribute('id'));
-          handleAnswer(opt.getAttribute('id'));
-        }
-      }
+      opt.setAttribute('clickable', '');
+      opt.flushToDOM();
     });
-  }, { passive: false });
+  });
 });
