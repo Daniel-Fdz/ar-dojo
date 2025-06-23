@@ -31,13 +31,13 @@
             <a-video id="video-plane" src="#judoVid" width="1.5" height="0.85" position="0 0 -0.1" rotation="-90 0 0">
             </a-video>
 
-            <!-- Texto de pregunta arriba de todo -->
-            <a-text value="&#191;Qu&#233; t&#233;cnica es esta?" align="center" position="0 0 -0.5" width="2.5"
-                color="#FFFF00" rotation="-90 0 0" shader="sdf">
+            <!-- Texto de pregunta más arriba y azul eléctrico -->
+            <a-text value="&#191;Qu&#233; t&#233;cnica es &#233;sta?" align="center" position="0 0 -0.8" width="2.5"
+                color="#00BFFF" rotation="-90 0 0" shader="sdf">
             </a-text>
 
-            <!-- Botones más pequeños y arriba del video -->
-            <a-plane id="opt1" class="answer" position="-0.8 0 0.3" width="0.4" height="0.2" rotation="-90 0 0"
+            <!-- Botones más abajo para no solaparse -->
+            <a-plane id="opt1" class="answer" position="-0.8 0 0.6" width="0.4" height="0.2" rotation="-90 0 0"
                 material="color: #42A5F5; transparent: true; opacity: 0.9"
                 animation__mouseenter="property: scale; to: 1.1 1.1 1.1; startEvents: mouseenter; dur: 200"
                 animation__mouseleave="property: scale; to: 1 1 1; startEvents: mouseleave; dur: 200">
@@ -45,7 +45,7 @@
                 </a-text>
             </a-plane>
 
-            <a-plane id="opt2" class="answer" position="0 0 0.3" width="0.4" height="0.2" rotation="-90 0 0"
+            <a-plane id="opt2" class="answer" position="0 0 0.6" width="0.4" height="0.2" rotation="-90 0 0"
                 material="color: #42A5F5; transparent: true; opacity: 0.9"
                 animation__mouseenter="property: scale; to: 1.1 1.1 1.1; startEvents: mouseenter; dur: 200"
                 animation__mouseleave="property: scale; to: 1 1 1; startEvents: mouseleave; dur: 200">
@@ -53,7 +53,7 @@
                 </a-text>
             </a-plane>
 
-            <a-plane id="opt3" class="answer" position="0.8 0 0.3" width="0.4" height="0.2" rotation="-90 0 0"
+            <a-plane id="opt3" class="answer" position="0.8 0 0.6" width="0.4" height="0.2" rotation="-90 0 0"
                 material="color: #42A5F5; transparent: true; opacity: 0.9"
                 animation__mouseenter="property: scale; to: 1.1 1.1 1.1; startEvents: mouseenter; dur: 200"
                 animation__mouseleave="property: scale; to: 1 1 1; startEvents: mouseleave; dur: 200">
@@ -72,23 +72,20 @@
             </a-entity>
 
             <!-- Texto "CORRECTO" para respuesta correcta -->
-            <a-text id="correct-text" value="¡CORRECTO!" align="center" position="0 0 0.8" width="4" color="#00FF00"
-                rotation="-90 0 0" shader="sdf" visible="false"
+            <a-text id="correct-text" value="CORRECTO" align="center" position="0 0 0.2" width="4"
+                color="#00FF00" rotation="-90 0 0" shader="sdf" visible="false"
                 animation__pulse="property: scale; to: 1.2 1.2 1.2; dur: 800; direction: alternate; loop: true; easing: easeInOutSine">
             </a-text>
 
             <!-- Texto "INCORRECTO" para respuesta incorrecta -->
-            <a-text id="incorrect-text" value="INCORRECTO" align="center" position="0 0 0.8" width="3" color="#FF0000"
+            <a-text id="incorrect-text" value="INCORRECTO" align="center" position="0 0 0.2" width="3" color="#FF0000"
                 rotation="-90 0 0" shader="sdf" visible="false"
                 animation__shake="property: rotation; to: -90 5 0; dur: 100; direction: alternate; loop: 6; easing: easeInOutSine">
             </a-text>
 
-            <!-- Fondo con degradado animado para respuesta correcta -->
-            <a-circle id="success-background" radius="2" position="0 0 -0.2" rotation="-90 0 0"
-                material="color: #00FF00; transparent: true; opacity: 0.6" visible="false"
-                animation__grow="property: scale; to: 1.5 1.5 1.5; dur: 1000; direction: alternate; loop: true; easing: easeInOutSine"
-                animation__rotate="property: rotation; to: -90 0 360; dur: 3000; loop: true; easing: linear"
-                animation__color="property: material.color; to: #FFD700; dur: 1500; direction: alternate; loop: true; easing: easeInOutSine">
+            <!-- Fondo que crece una vez y se queda (más atrás) -->
+            <a-circle id="success-background" radius="1" position="0 0 -0.5" rotation="-90 0 0"
+                material="color: #00FF00; transparent: false; opacity: 1" visible="false">
             </a-circle>
 
         </a-marker>
