@@ -6,93 +6,6 @@
     <title>Quiz Judo AR</title>
     <script src="https://aframe.io/releases/1.4.0/aframe.min.js"></script>
     <script src="https://cdn.jsdelivr.net/gh/AR-js-org/AR.js/aframe/build/aframe-ar.min.js"></script>
-    <!-- Sistema de confeti alternativo más impresionante -->
-    <script>
-        AFRAME.registerComponent('epic-confetti', {
-            schema: {
-                enabled: { type: 'boolean', default: false }
-            },
-            init: function () {
-                this.particles = [];
-                this.createParticles();
-            },
-            createParticles: function () {
-                // Crear 150 partículas más grandes y coloridas
-                for (let i = 0; i < 150; i++) {
-                    const shapes = ['a-box', 'a-sphere', 'a-cylinder'];
-                    const randomShape = shapes[Math.floor(Math.random() * shapes.length)];
-                    const particle = document.createElement(randomShape);
-
-                    // Tamaños más grandes
-                    if (randomShape === 'a-box') {
-                        particle.setAttribute('width', '0.05');
-                        particle.setAttribute('height', '0.05');
-                        particle.setAttribute('depth', '0.05');
-                    } else if (randomShape === 'a-sphere') {
-                        particle.setAttribute('radius', '0.03');
-                    } else {
-                        particle.setAttribute('radius', '0.02');
-                        particle.setAttribute('height', '0.06');
-                    }
-
-                    // Colores más vibrantes
-                    const colors = ['#FF6B6B', '#4ECDC4', '#45B7D1', '#96CEB4', '#FFEAA7', '#DDA0DD', '#98D8C8', '#F7DC6F'];
-                    particle.setAttribute('material', {
-                        color: colors[Math.floor(Math.random() * colors.length)],
-                        metalness: 0.3,
-                        roughness: 0.4
-                    });
-
-                    // Posiciones iniciales más dispersas
-                    particle.setAttribute('position', {
-                        x: (Math.random() - 0.5) * 3,
-                        y: Math.random() * 3 + 1,
-                        z: (Math.random() - 0.5) * 3
-                    });
-
-                    this.el.appendChild(particle);
-                    this.particles.push(particle);
-                }
-            },
-            update: function () {
-                this.el.setAttribute('visible', this.data.enabled);
-                if (this.data.enabled) {
-                    // Animaciones más espectaculares
-                    this.particles.forEach((particle, index) => {
-                        particle.removeAttribute('animation');
-                        particle.removeAttribute('animation__rotation');
-                        particle.removeAttribute('animation__scale');
-
-                        setTimeout(() => {
-                            // Animación de caída más dramática
-                            particle.setAttribute('animation', {
-                                property: 'position',
-                                to: {
-                                    x: (Math.random() - 0.5) * 6,
-                                    y: -2,
-                                    z: (Math.random() - 0.5) * 6
-                                },
-                                dur: 4000,
-                                easing: 'easeOutBounce'
-                            });
-
-                            // Rotación múltiple
-                            particle.setAttribute('animation__rotation', {
-                                property: 'rotation',
-                                to: {
-                                    x: Math.random() * 720,
-                                    y: Math.random() * 720,
-                                    z: Math.random() * 720
-                                },
-                                dur: 4000,
-                                loop: true
-                            });
-                        }, 100);
-                    });
-                }
-            }
-        });
-    </script>
 
     <script src="main.js"></script>
 </head>
@@ -170,9 +83,13 @@
                 animation__shake="property: rotation; to: -90 5 0; dur: 100; direction: alternate; loop: 6; easing: easeInOutSine">
             </a-text>
 
-            <!-- Confeti épico mejorado -->
-            <a-entity id="confetti" epic-confetti="enabled: false" position="0 0.8 1" visible="false">
-            </a-entity>
+            <!-- Fondo con degradado animado para respuesta correcta -->
+            <a-circle id="success-background" radius="2" position="0 0 -0.2" rotation="-90 0 0"
+                material="color: #00FF00; transparent: true; opacity: 0.6" visible="false"
+                animation__grow="property: scale; to: 1.5 1.5 1.5; dur: 1000; direction: alternate; loop: true; easing: easeInOutSine"
+                animation__rotate="property: rotation; to: -90 0 360; dur: 3000; loop: true; easing: linear"
+                animation__color="property: material.color; to: #FFD700; dur: 1500; direction: alternate; loop: true; easing: easeInOutSine">
+            </a-circle>
 
         </a-marker>
 
