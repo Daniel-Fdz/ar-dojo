@@ -15,11 +15,11 @@
     <div id="overlay-buttons"
         style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: 1000; pointer-events: none;">
         <button id="html-opt1"
-            style="position: absolute; left: 25%; top: 70%; width: 15%; height: 8%; background: transparent; border: none; pointer-events: auto;"></button>
+            style="position: absolute; left: 30%; top: 65%; width: 12%; height: 10%; background: rgba(255,0,0,0.2); border: 2px solid red; pointer-events: auto;">1</button>
         <button id="html-opt2"
-            style="position: absolute; left: 42.5%; top: 70%; width: 15%; height: 8%; background: transparent; border: none; pointer-events: auto;"></button>
+            style="position: absolute; left: 44%; top: 65%; width: 12%; height: 10%; background: rgba(0,255,0,0.2); border: 2px solid green; pointer-events: auto;">2</button>
         <button id="html-opt3"
-            style="position: absolute; left: 60%; top: 70%; width: 15%; height: 8%; background: transparent; border: none; pointer-events: auto;"></button>
+            style="position: absolute; left: 58%; top: 65%; width: 12%; height: 10%; background: rgba(0,0,255,0.2); border: 2px solid blue; pointer-events: auto;">3</button>
     </div>
 
     <!-- Configuración mejorada para móvil -->
@@ -53,7 +53,7 @@
             </a-text>
 
             <!-- Botones más abajo para no solaparse -->
-            <a-plane id="opt1" class="answer" position="-0.8 0 0.6" width="0.4" height="0.2" rotation="-90 0 0"
+            <a-plane id="opt1" class="answer" position="-0.5 0 0.6" width="0.4" height="0.2" rotation="-90 0 0"
                 material="color: #42A5F5; transparent: true; opacity: 0.9"
                 animation__mouseenter="property: scale; to: 1.1 1.1 1.1; startEvents: mouseenter; dur: 200"
                 animation__mouseleave="property: scale; to: 1 1 1; startEvents: mouseleave; dur: 200">
@@ -69,7 +69,7 @@
                 </a-text>
             </a-plane>
 
-            <a-plane id="opt3" class="answer" position="0.8 0 0.6" width="0.4" height="0.2" rotation="-90 0 0"
+            <a-plane id="opt3" class="answer" position="0.5 0 0.6" width="0.4" height="0.2" rotation="-90 0 0"
                 material="color: #42A5F5; transparent: true; opacity: 0.9"
                 animation__mouseenter="property: scale; to: 1.1 1.1 1.1; startEvents: mouseenter; dur: 200"
                 animation__mouseleave="property: scale; to: 1 1 1; startEvents: mouseleave; dur: 200">
