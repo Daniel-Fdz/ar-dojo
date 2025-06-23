@@ -18,13 +18,13 @@
             border-radius: 8px;
             color: white;
             font-family: Arial, sans-serif;
-            font-size: 14px;
+            font-size: 16px;
             font-weight: bold;
             pointer-events: auto;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
             transition: all 0.2s ease;
             cursor: pointer;
-            width: 12%;
+            width: 18%;
             height: 8%;
             top: 65%;
         }
@@ -39,15 +39,15 @@
         }
 
         #html-opt1 {
-            left: 30%;
+            left: 26%;
         }
 
         #html-opt2 {
-            left: 44%;
+            left: 46%;
         }
 
         #html-opt3 {
-            left: 58%;
+            left: 66%;
         }
 
         /* Animación de aparición */
@@ -136,31 +136,6 @@
                 rotation="-90 0 0" shader="sdf">
             </a-text>
 
-            <!-- Botones más abajo para no solaparse -->
-            <a-plane id="opt1" class="answer" position="-0.5 0 0.6" width="0.4" height="0.2" rotation="-90 0 0"
-                material="color: #42A5F5; transparent: true; opacity: 0.9"
-                animation__mouseenter="property: scale; to: 1.1 1.1 1.1; startEvents: mouseenter; dur: 200"
-                animation__mouseleave="property: scale; to: 1 1 1; startEvents: mouseleave; dur: 200">
-                <a-text value="Ippon-seoi-nage" align="center" position="0 0 0.05" width="1.2" color="#FFFFFF">
-                </a-text>
-            </a-plane>
-
-            <a-plane id="opt2" class="answer" position="0 0 0.6" width="0.4" height="0.2" rotation="-90 0 0"
-                material="color: #42A5F5; transparent: true; opacity: 0.9"
-                animation__mouseenter="property: scale; to: 1.1 1.1 1.1; startEvents: mouseenter; dur: 200"
-                animation__mouseleave="property: scale; to: 1 1 1; startEvents: mouseleave; dur: 200">
-                <a-text value="Ko-uchi-gari" align="center" position="0 0 0.05" width="1.2" color="#FFFFFF">
-                </a-text>
-            </a-plane>
-
-            <a-plane id="opt3" class="answer" position="0.5 0 0.6" width="0.4" height="0.2" rotation="-90 0 0"
-                material="color: #42A5F5; transparent: true; opacity: 0.9"
-                animation__mouseenter="property: scale; to: 1.1 1.1 1.1; startEvents: mouseenter; dur: 200"
-                animation__mouseleave="property: scale; to: 1 1 1; startEvents: mouseleave; dur: 200">
-                <a-text value="O-uchi-gari" align="center" position="0 0 0.05" width="1.2" color="#FFFFFF">
-                </a-text>
-            </a-plane>
-
             <!-- Cruz roja centrada -->
             <a-entity id="cross" position="0 0.8 1.2" rotation="-90 0 0" visible="false">
                 <a-box width="0.15" height="0.6" depth="0.05" material="color: #FF4444" position="0 0 0">
@@ -170,18 +145,6 @@
                 <a-circle radius="0.4" material="color: #FFFFFF; transparent: true; opacity: 0.9" position="0 0 -0.1">
                 </a-circle>
             </a-entity>
-
-            <!-- Texto "CORRECTO" para respuesta correcta -->
-            <a-text id="correct-text" value="CORRECTO" align="center" position="0 0 0.2" width="4" color="#00FF00"
-                rotation="-90 0 0" shader="sdf" visible="false"
-                animation__pulse="property: scale; to: 1.2 1.2 1.2; dur: 800; direction: alternate; loop: true; easing: easeInOutSine">
-            </a-text>
-
-            <!-- Texto "INCORRECTO" para respuesta incorrecta -->
-            <a-text id="incorrect-text" value="INCORRECTO" align="center" position="0 0 0.2" width="3" color="#FF0000"
-                rotation="-90 0 0" shader="sdf" visible="false"
-                animation__shake="property: rotation; to: -90 5 0; dur: 100; direction: alternate; loop: 6; easing: easeInOutSine">
-            </a-text>
 
         </a-marker>
 
