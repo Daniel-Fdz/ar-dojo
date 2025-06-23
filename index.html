@@ -101,7 +101,7 @@
         <a-assets>
             <!-- Video de prueba compatible con móviles -->
             <video id="judoVid" src="assets/judo-video.mp4"
-                preload="auto" loop="false" crossorigin="anonymous" playsinline>
+                preload="auto" loop="true" crossorigin="anonymous" playsinline>
             </video>
         </a-assets>
 
@@ -110,11 +110,11 @@
             smoothThreshold="5">
 
             <!-- Vídeo centrado más arriba -->
-            <a-video id="video-plane" src="#judoVid" width="1.5" height="0.85" position="0 0 -0.2" rotation="-90 0 0">
+            <a-video id="video-plane" src="#judoVid" width="1.5" height="0.85" position="0 0 -0.1" rotation="-90 0 0">
             </a-video>
 
             <!-- Texto de pregunta arriba de todo -->
-            <a-text value="Cual es la tecnica mostrada?" align="center" position="0 0 0.5" width="4" color="#FFFF00"
+            <a-text value="Cual es la tecnica mostrada?" align="center" position="0 0 -0.5" width="2.5" color="#FFFF00"
                 rotation="-90 0 0" shader="msdf">
             </a-text>
 
@@ -123,7 +123,7 @@
                 material="color: #42A5F5; transparent: true; opacity: 0.9"
                 animation__mouseenter="property: scale; to: 1.1 1.1 1.1; startEvents: mouseenter; dur: 200"
                 animation__mouseleave="property: scale; to: 1 1 1; startEvents: mouseleave; dur: 200">
-                <a-text value="Ippon-seoi-nage" align="center" position="0 0 0.05" width="2" color="#FFFFFF">
+                <a-text value="Ippon-seoi-nage" align="center" position="0 0 0.05" width="1.2" color="#FFFFFF">
                 </a-text>
             </a-plane>
 
@@ -131,7 +131,7 @@
                 material="color: #42A5F5; transparent: true; opacity: 0.9"
                 animation__mouseenter="property: scale; to: 1.1 1.1 1.1; startEvents: mouseenter; dur: 200"
                 animation__mouseleave="property: scale; to: 1 1 1; startEvents: mouseleave; dur: 200">
-                <a-text value="Ko-uchi-gari" align="center" position="0 0 0.05" width="2" color="#FFFFFF">
+                <a-text value="Ko-uchi-gari" align="center" position="0 0 0.05" width="1.2" color="#FFFFFF">
                 </a-text>
             </a-plane>
 
@@ -139,7 +139,7 @@
                 material="color: #42A5F5; transparent: true; opacity: 0.9"
                 animation__mouseenter="property: scale; to: 1.1 1.1 1.1; startEvents: mouseenter; dur: 200"
                 animation__mouseleave="property: scale; to: 1 1 1; startEvents: mouseleave; dur: 200">
-                <a-text value="O-uchi-gari" align="center" position="0 0 0.05" width="2" color="#FFFFFF">
+                <a-text value="O-uchi-gari" align="center" position="0 0 0.05" width="1.2" color="#FFFFFF">
                 </a-text>
             </a-plane>
 
